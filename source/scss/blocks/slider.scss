@@ -5,6 +5,7 @@
 
   .swiper-wrapper {
     min-height: 100vh;
+    box-sizing: border-box;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
