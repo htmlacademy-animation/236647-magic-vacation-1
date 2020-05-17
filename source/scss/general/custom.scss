@@ -1,0 +1,172 @@
+// задание 2
+// меню в хедере
+.page-header__menu {
+  a {
+    transition: color 0.35s ease-in;
+    &::after {
+      display: block;
+      transition: background-color 0.35s ease-in, transform 0.35s ease-in;
+      transform: scale(0, 1);
+      transform-origin: right;
+    }
+    &:hover,
+    &:focus {
+      &::after {
+        transform: scale(1, 1);
+        transform-origin: left;
+      }
+    }
+    &.active {
+      &::after {
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+// задание 3
+// соц сети
+.social-block__toggler {
+  transition: color 0.35s ease-in;
+  &::before {
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.375, 1.445);
+  }
+}
+.social-block__list {
+  transition: opacity 0.35s ease-in;
+  li {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 0.35s, 0.35s;
+    transition-timing-function: ease-in, ease-in;
+    transform: translate(0, 0.5rem);
+    transition-delay: 0.1s, 0.1s;
+  }
+}
+.social-block {
+  &.social-block--active,
+  &:hover {
+    .social-block__list {
+      li {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      @for $i from 1 through 3 {
+        li:nth-child(#{$i}) {
+          transition-delay: $i * 0.1s, $i * 0.1s;
+        }
+      }
+    }
+  }
+  .social-block__link {
+    transition: color 0.35s ease-in;
+  }
+}
+
+.social-block__toggler:focus {
+  & + .social-block__list {
+    li {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+}
+
+// задание 4
+// текстовый блок
+.screen--intro.active {
+  .intro__message {
+    animation-name: fadeInUp;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+  }
+}
+
+// задание 5
+// текст на слайде
+
+.swiper-wrapper {
+  transition-delay: 0.4s;
+}
+
+.swiper-slide {
+  .slider__item-text {
+    animation-name: fadeInLeft;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+  }
+}
+.swiper-slide.swiper-slide-active,
+.swiper-slide.swiper-slide-next {
+  .slider__item-text {
+    animation-name: fadeInRight;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    animation-delay: 0.4s;
+  }
+}
+.swiper-slide.swiper-slide-next {
+  .slider__item-text {
+    animation-delay: 0.6s;
+  }
+}
+
+// задание 5
+// инпут
+.screen--game.active {
+  #message-field {
+    animation-name: changeWidth;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    transform-origin: right;
+  }
+}
+.form {
+  justify-content: flex-end;
+}
+.form__button {
+  max-width: 18rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(0, 2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes changeWidth {
+  from {
+    width: 15%;
+  }
+  to {
+    width: calc(100% - 21rem);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate(3rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-2rem, 0);
+  }
+}
