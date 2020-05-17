@@ -3240,10 +3240,10 @@ img {
         height: 10px; } }
 
 .page-header__menu a {
-  transition: color 0.15s ease-in; }
+  transition: color 0.35s ease-in; }
   .page-header__menu a::after {
     display: block;
-    transition: background-color 0.15s ease-in, transform 0.15s ease-in;
+    transition: background-color 0.35s ease-in, transform 0.35s ease-in;
     transform: scale(0, 1);
     transform-origin: right; }
   .page-header__menu a:hover::after, .page-header__menu a:focus::after {
@@ -3253,82 +3253,106 @@ img {
     transform: scale(1, 1); }
 
 .social-block__toggler {
-  transition: color 0.15s ease-in; }
+  transition: color 0.35s ease-in; }
   .social-block__toggler::before {
-    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.375, 1.445); }
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.375, 1.445); }
 
 .social-block__list {
-  transition: opacity 0.15s ease-in; }
+  transition: opacity 0.35s ease-in; }
   .social-block__list li {
     opacity: 0;
-    transition-property: all;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-in;
-    transform: translate(0, 6px);
-    transition-delay: 0.1s; }
+    transition-property: opacity, transform;
+    transition-duration: 0.35s, 0.35s;
+    transition-timing-function: ease-in, ease-in;
+    transform: translate(0, 0.5rem);
+    transition-delay: 0.1s, 0.1s; }
 
 .social-block.social-block--active .social-block__list li, .social-block:hover .social-block__list li {
   opacity: 1;
   transform: translate(0, 0); }
 
 .social-block.social-block--active .social-block__list li:nth-child(1), .social-block:hover .social-block__list li:nth-child(1) {
-  transition-delay: 0.1s; }
+  transition-delay: 0.1s, 0.1s; }
 
 .social-block.social-block--active .social-block__list li:nth-child(2), .social-block:hover .social-block__list li:nth-child(2) {
-  transition-delay: 0.2s; }
+  transition-delay: 0.2s, 0.2s; }
 
 .social-block.social-block--active .social-block__list li:nth-child(3), .social-block:hover .social-block__list li:nth-child(3) {
-  transition-delay: 0.3s; }
+  transition-delay: 0.3s, 0.3s; }
 
 .social-block .social-block__link {
-  transition: color 0.15s ease-in; }
+  transition: color 0.35s ease-in; }
 
 .social-block__toggler:focus + .social-block__list li {
   opacity: 1;
   transform: translate(0, 0); }
 
 .screen--intro.active .intro__message {
-  animation-name: fadeIn;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in-out; }
-
-.slider__item-text {
-  transform: translate(25px, 0);
-  opacity: 0;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+  animation-name: fadeInUp;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out; }
 
 .swiper-wrapper {
-  transition-delay: 0.3s; }
+  transition-delay: 0.4s; }
 
-.swiper-slide-active .slider__item-text {
-  transform: translate(0, 0);
-  opacity: 1;
-  transition: transform 0.3s ease-in-out 0.45s, opacity 0.5s ease-in-out 0.3s; }
+.swiper-slide .slider__item-text {
+  animation-name: fadeInLeft;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both; }
 
-.swiper-slide-next .slider__item-text {
-  transform: translate(0, 0);
-  opacity: 1;
-  transition: transform 0.3s ease-in-out 0.45s, opacity 0.5s ease-in-out 0.3s; }
+.swiper-slide.swiper-slide-active .slider__item-text,
+.swiper-slide.swiper-slide-next .slider__item-text {
+  animation-name: fadeInRight;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.4s; }
+
+.swiper-slide.swiper-slide-next .slider__item-text {
+  animation-delay: 0.6s; }
 
 .screen--game.active #message-field {
   animation-name: changeWidth;
-  animation-duration: 0.3s;
+  animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   transform-origin: right; }
 
-@keyframes fadeIn {
+.form {
+  justify-content: flex-end; }
+
+.form__button {
+  max-width: 18rem; }
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translate(0, 15px); }
+    transform: translate(0, 2.5rem); }
   to {
     opacity: 1;
     transform: translate(0, 0); } }
 
 @keyframes changeWidth {
   from {
-    transform: scaleX(0.3); }
+    width: 15%; }
   to {
-    transform: scaleX(1); } }
+    width: calc(100% - 21rem); } }
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate(3rem, 0); }
+  to {
+    opacity: 1;
+    transform: translate(0, 0); } }
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 1;
+    transform: translate(0, 0); }
+  to {
+    opacity: 0;
+    transform: translate(-2rem, 0); } }
 
 
 /*# sourceMappingURL=style.min.css.map*/
