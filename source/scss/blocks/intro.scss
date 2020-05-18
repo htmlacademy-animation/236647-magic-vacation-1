@@ -85,6 +85,13 @@
     display: none;
   }
 }
+.screen--intro.active {
+  .intro__message {
+    animation-name: fadeInUp;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+  }
+}
 
 .intro__message {
   flex: none;

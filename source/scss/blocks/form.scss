@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .form__label {
@@ -80,7 +81,7 @@
 
 .form__button {
   flex-grow: 1;
-
+  max-width: 18rem;
   @media (orientation: portrait) {
     position: relative;
     flex: none;
@@ -125,10 +126,18 @@
   }
 }
 
+.screen--game.active {
+  .form__field {
+    animation-name: changeWidth;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    transform-origin: right;
+  }
+}
+
 .form--result {
   .form__field {
     width: calc(100% - 31rem);
-
     @media (min-width: $stop-scaling) {
       width: calc(100% - 310px);
     }
