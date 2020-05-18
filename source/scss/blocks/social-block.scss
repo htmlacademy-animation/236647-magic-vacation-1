@@ -9,6 +9,17 @@
   }
 }
 
+.body__loaded {
+  .social-block__toggler {
+    &::before {
+      animation-name: tooglerPusle;
+      animation-delay: 0.3s;
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.375, 1.445);
+      animation-duration: 0.35s;
+    }
+  }
+}
+
 .social-block__toggler {
   @include btn-reset;
   position: relative;
@@ -17,7 +28,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
-
+  transition: color 0.35s ease-in;
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
   }
@@ -35,6 +46,7 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.375, 1.445);
   }
 
   svg {
@@ -47,7 +59,6 @@
   &:hover,
   .social-block--active & {
     color: $c-purple;
-
     &::before {
       width: 112.5%;
       height: 112.5%;
@@ -65,6 +76,10 @@
     & + .social-block__list {
       opacity: 1;
       pointer-events: auto;
+      li {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
     }
   }
 
@@ -89,7 +104,7 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
-
+  transition: opacity 0.35s ease-in;
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
   }
@@ -140,12 +155,26 @@
   .social-block--active & {
     opacity: 1;
     pointer-events: auto;
+    li {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    @for $i from 1 through 3 {
+      li:nth-child(#{$i}) {
+        transition-delay: $i * 0.1s, $i * 0.1s;
+      }
+    }
   }
 
   li {
     flex: none;
     margin-bottom: 0.5rem;
-
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 0.35s, 0.35s;
+    transition-timing-function: ease-in, ease-in;
+    transform: translate(0, 0.5rem);
+    transition-delay: 0.1s, 0.1s;
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
     }
@@ -168,7 +197,7 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
-
+  transition: color 0.35s ease-in;
   @media (min-width: $stop-scaling) {
     width: 40px;
     height: 40px;
