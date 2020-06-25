@@ -3,11 +3,13 @@ import throttle from 'lodash/throttle';
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
+    this.PAGE_TURNING_DELAY = 450;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
     this.activeScreen = 0;
+    this.storyScreenIndex = 1;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChenged.bind(this);
   }
@@ -18,13 +20,14 @@ export default class FullPageScroll {
 
     this.onUrlHashChenged();
     this.changePageDisplay();
+    this.anchorLinkHandler();
   }
 
   onScroll(evt) {
     const currentPosition = this.activeScreen;
     this.reCalculateActiveScreenPosition(evt.deltaY);
     if (currentPosition !== this.activeScreen) {
-      this.changePageDisplay();
+      setTimeout(() => this.changePageDisplay, this.PAGE_TURNING_DELAY);
     }
   }
 
@@ -38,6 +41,28 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
+  }
+
+  anchorLinkHandler() {
+    Array.from(this.menuElements, (el) =>
+      el.addEventListener(`click`, (e) => {
+        e.preventDefault();
+        const url = el.getAttribute(`href`);
+        this.addAnimatePageClass(url);
+        setTimeout(() => {
+          window.location = url;
+        }, this.PAGE_TURNING_DELAY);
+      }));
+  }
+
+  addAnimatePageClass(url) {
+    const mainPageId = `#top`;
+    const storyPageId = `#top`;
+    if (this.activeScreen === this.storyScreenIndex && url !== storyPageId && url !== mainPageId) {
+      document.querySelector(`.screen--story`).classList.add(`screen--story--animate`);
+    } else {
+      document.querySelector(`.screen--story`).classList.remove(`screen--story--animate`);
+    }
   }
 
   changeVisibilityDisplay() {
