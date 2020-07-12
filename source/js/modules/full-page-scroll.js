@@ -57,7 +57,7 @@ export default class FullPageScroll {
 
   addAnimatePageClass(url) {
     const mainPageId = `#top`;
-    const storyPageId = `#top`;
+    const storyPageId = `#story`;
     if (this.activeScreen === this.storyScreenIndex && url !== storyPageId && url !== mainPageId) {
       document.querySelector(`.screen--story`).classList.add(`screen--story--animate`);
     } else {
